@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EndPC — Formattage, Linux, Assemblage PC</title>
+  <meta name="description" content="Service de réparation PC: formattage Windows, installation Linux (Kali, Parrot, Ubuntu), assemblage PC, installation jeux et SSD/RAM. Maroc.">
+  <link rel="icon" href="assets/endpcicon.jpg" type="image/jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded" rel="stylesheet">
+  <style>
+    /* ===== M3 Expressive Dark Red Theme ===== */
+    :root {
+      /* Primary — Red */
+      --md-sys-color-primary: #FFB3AE;
+      --md-sys-color-on-primary: #690005;
+      --md-sys-color-primary-container: #93000A;
+      --md-sys-color-on-primary-container: #FFDAD4;
+
+      /* Secondary — Muted Rose */
+      --md-sys-color-secondary: #E7BDB6;
+      --md-sys-color-on-secondary: #44292A;
+      --md-sys-color-secondary-container: #5D3F40;
+      --md-sys-color-on-secondary-container: #FFDAD4;
+
+      /* Tertiary — Purple accent (matches logo) */
+      --md-sys-color-tertiary: #E5BDE6;
+      --md-sys-color-on-tertiary: #3D2B3E;
+      --md-sys-color-tertiary-container: #554155;
+      --md-sys-color-on-tertiary-container: #FFD7F7;
+
+      /* Error */
+      --md-sys-color-error: #FFB4AB;
+      --md-sys-color-on-error: #690005;
+      --md-sys-color-error-container: #93000A;
+      --md-sys-color-on-error-container: #FFDAD6;
+
+      /* Surfaces — Dark */
+      --md-sys-color-background: #1C1B1F;
+      --md-sys-color-on-background: #E6E1E5;
+      --md-sys-color-surface: #1C1B1F;
+      --md-sys-color-on-surface: #E6E1E5;
+      --md-sys-color-surface-variant: #49454F;
+      --md-sys-color-on-surface-variant: #CAC4D0;
+      --md-sys-color-surface-dim: #141218;
+      --md-sys-color-surface-bright: #3B383E;
+      --md-sys-color-surface-container-lowest: #0F0D13;
+      --md-sys-color-surface-container-low: #1D1B20;
+      --md-sys-color-surface-container: #211F26;
+      --md-sys-color-surface-container-high: #2B2930;
+      --md-sys-color-surface-container-highest: #36343B;
+
+      /* Outline */
+      --md-sys-color-outline: #938F99;
+      --md-sys-color-outline-variant: #49454F;
+
+      /* Inverse */
+      --md-sys-color-inverse-surface: #E6E1E5;
+      --md-sys-color-inverse-on-surface: #313033;
+      --md-sys-color-inverse-primary: #BB3225;
+
+      /* Shape */
+      --md-sys-shape-corner-none: 0px;
+      --md-sys-shape-corner-extra-small: 4px;
+      --md-sys-shape-corner-small: 8px;
+      --md-sys-shape-corner-medium: 12px;
+      --md-sys-shape-corner-large: 16px;
+      --md-sys-shape-corner-extra-large: 28px;
+      --md-sys-shape-corner-full: 9999px;
+
+      /* Typography */
+      --md-sys-typescale-display-large-font: 'Google Sans', system-ui, sans-serif;
+      --md-sys-typescale-display-large-size: 57px;
+      --md-sys-typescale-display-large-line-height: 64px;
+      --md-sys-typescale-display-large-weight: 400;
+
+      --md-sys-typescale-headline-large-font: 'Google Sans', system-ui, sans-serif;
+      --md-sys-typescale-headline-large-size: 32px;
+      --md-sys-typescale-headline-large-line-height: 40px;
+      --md-sys-typescale-headline-large-weight: 400;
+
+      --md-sys-typescale-headline-medium-font: 'Google Sans', system-ui, sans-serif;
+      --md-sys-typescale-headline-medium-size: 28px;
+      --md-sys-typescale-headline-medium-line-height: 36px;
+      --md-sys-typescale-headline-medium-weight: 400;
+
+      --md-sys-typescale-title-large-font: 'Google Sans', system-ui, sans-serif;
+      --md-sys-typescale-title-large-size: 22px;
+      --md-sys-typescale-title-large-line-height: 28px;
+      --md-sys-typescale-title-large-weight: 500;
+
+      --md-sys-typescale-title-medium-font: 'Google Sans Text', system-ui, sans-serif;
+      --md-sys-typescale-title-medium-size: 16px;
+      --md-sys-typescale-title-medium-line-height: 24px;
+      --md-sys-typescale-title-medium-weight: 500;
+
+      --md-sys-typescale-body-large-font: 'Google Sans Text', system-ui, sans-serif;
+      --md-sys-typescale-body-large-size: 16px;
+      --md-sys-typescale-body-large-line-height: 24px;
+      --md-sys-typescale-body-large-weight: 400;
+
+      --md-sys-typescale-body-medium-font: 'Google Sans Text', system-ui, sans-serif;
+      --md-sys-typescale-body-medium-size: 14px;
+      --md-sys-typescale-body-medium-line-height: 20px;
+      --md-sys-typescale-body-medium-weight: 400;
+
+      --md-sys-typescale-label-large-font: 'Google Sans Text', system-ui, sans-serif;
+      --md-sys-typescale-label-large-size: 14px;
+      --md-sys-typescale-label-large-line-height: 20px;
+      --md-sys-typescale-label-large-weight: 500;
+
+      --md-sys-typescale-label-medium-font: 'Google Sans Text', system-ui, sans-serif;
+      --md-sys-typescale-label-medium-size: 12px;
+      --md-sys-typescale-label-medium-line-height: 16px;
+      --md-sys-typescale-label-medium-weight: 500;
+    }
+
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--md-sys-typescale-body-large-font);
+      font-size: var(--md-sys-typescale-body-large-size);
+      line-height: var(--md-sys-typescale-body-large-line-height);
+      color: var(--md-sys-color-on-surface);
+      background: var(--md-sys-color-background);
+      min-height: 100vh;
+    }
+
+    /* ===== Scrollbar ===== */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--md-sys-color-surface-dim); }
+    ::-webkit-scrollbar-thumb { background: var(--md-sys-color-outline-variant); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--md-sys-color-outline); }
+
+    /* ===== Layout ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    /* ===== Top App Bar (Navbar) ===== */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--md-sys-color-surface);
+      border-bottom: 1px solid var(--md-sys-color-outline-variant);
+      padding: 12px 0;
+      transition: background 0.2s;
+    }
+
+    .top-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .top-bar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .top-bar-brand img {
+      height: 36px;
+      width: auto;
+    }
+
+    .top-bar-brand span {
+      font-family: var(--md-sys-typescale-title-large-font);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--md-sys-color-on-surface);
+      letter-spacing: -0.5px;
+    }
+
+    .top-bar-nav {
+      display: flex;
+      gap: 8px;
+    }
+
+    .top-bar-nav a {
+      font-family: var(--md-sys-typescale-label-large-font);
+      font-size: var(--md-sys-typescale-label-large-size);
+      font-weight: var(--md-sys-typescale-label-large-weight);
+      color: var(--md-sys-color-on-surface-variant);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: var(--md-sys-shape-corner-full);
+      transition: all 0.2s;
+    }
+
+    .top-bar-nav a:hover {
+      background: var(--md-sys-color-surface-container-high);
+      color: var(--md-sys-color-on-surface);
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(147, 0, 10, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      border-radius: var(--md-sys-shape-corner-full);
+      font-family: var(--md-sys-typescale-label-large-font);
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 32px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .hero-badge .material-symbols-rounded {
+      font-size: 18px;
+    }
+
+    .hero-logo {
+      width: 320px;
+      max-width: 90vw;
+      height: auto;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 0 40px rgba(147, 0, 10, 0.3));
+    }
+
+    .hero h1 {
+      font-family: var(--md-sys-typescale-headline-large-font);
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 span {
+      color: var(--md-sys-color-primary);
+    }
+
+    .hero-sub {
+      font-family: var(--md-sys-typescale-body-large-font);
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--md-sys-color-on-surface-variant);
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== M3 Buttons ===== */
+    .md-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 24px;
+      height: 40px;
+      border: none;
+      border-radius: var(--md-sys-shape-corner-full);
+      font-family: var(--md-sys-typescale-label-large-font);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+      white-space: nowrap;
+    }
+
+    .md-btn .material-symbols-rounded {
+      font-size: 18px;
+    }
+
+    .md-btn-filled {
+      background: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+    }
+
+    .md-btn-filled:hover {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.15);
+      filter: brightness(1.08);
+    }
+
+    .md-btn-outlined {
+      background: transparent;
+      color: var(--md-sys-color-primary);
+      border: 1px solid var(--md-sys-color-outline);
+    }
+
+    .md-btn-outlined:hover {
+      background: rgba(255, 179, 174, 0.08);
+    }
+
+    .md-btn-tonal {
+      background: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+    }
+
+    .md-btn-tonal:hover {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.15);
+      filter: brightness(1.08);
+    }
+
+    .md-btn-text {
+      background: transparent;
+      color: var(--md-sys-color-primary);
+      padding: 0 12px;
+    }
+
+    .md-btn-text:hover {
+      background: rgba(255, 179, 174, 0.08);
+    }
+
+    /* ===== Services Section ===== */
+    .services {
+      background: var(--md-sys-color-surface);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-header .overline {
+      font-family: var(--md-sys-typescale-label-large-font);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--md-sys-color-primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+
+    .section-header h2 {
+      font-family: var(--md-sys-typescale-headline-medium-font);
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+      letter-spacing: -0.5px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background: var(--md-sys-color-surface-container);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: var(--md-sys-shape-corner-large);
+      padding: 24px;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--md-sys-color-primary);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: var(--md-sys-color-outline);
+      background: var(--md-sys-color-surface-container-high);
+      transform: translateY(-2px);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--md-sys-shape-corner-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+    }
+
+    .service-card-icon .material-symbols-rounded {
+      font-size: 24px;
+    }
+
+    .service-card h3 {
+      font-family: var(--md-sys-typescale-title-medium-font);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: var(--md-sys-color-on-surface-variant);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .service-price {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .service-price .amount {
+      font-family: var(--md-sys-typescale-headline-medium-font);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--md-sys-color-primary);
+    }
+
+    .service-price .currency {
+      font-family: var(--md-sys-typescale-label-medium-font);
+      font-size: 14px;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    /* ===== About Section ===== */
+    .about {
+      background: var(--md-sys-color-surface-dim);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .about-content h2 {
+      font-family: var(--md-sys-typescale-headline-medium-font);
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .about-content p {
+      font-size: 16px;
+      color: var(--md-sys-color-on-surface-variant);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: var(--md-sys-color-surface-container);
+      border-radius: var(--md-sys-shape-corner-medium);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-card .stat-number {
+      font-family: var(--md-sys-typescale-headline-medium-font);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--md-sys-color-primary);
+      margin-bottom: 4px;
+    }
+
+    .stat-card .stat-label {
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .about-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .about-image img {
+      width: 100%;
+      max-width: 360px;
+      border-radius: var(--md-sys-shape-corner-extra-large);
+      filter: drop-shadow(0 0 60px rgba(147, 0, 10, 0.2));
+    }
+
+    /* ===== Contact Section ===== */
+    .contact {
+      background: var(--md-sys-color-surface);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .contact-info h2 {
+      font-family: var(--md-sys-typescale-headline-medium-font);
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .contact-info > p {
+      font-size: 16px;
+      color: var(--md-sys-color-on-surface-variant);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--md-sys-color-surface-container);
+      border-radius: var(--md-sys-shape-corner-medium);
+      text-decoration: none;
+      color: var(--md-sys-color-on-surface);
+      transition: all 0.2s;
+    }
+
+    .contact-method:hover {
+      background: var(--md-sys-color-surface-container-high);
+      transform: translateX(4px);
+    }
+
+    .contact-method-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--md-sys-shape-corner-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--md-sys-color-tertiary-container);
+      color: var(--md-sys-color-on-tertiary-container);
+      flex-shrink: 0;
+    }
+
+    .contact-method-text {
+      flex: 1;
+    }
+
+    .contact-method-text .label {
+      font-size: 12px;
+      color: var(--md-sys-color-on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-method-text .value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+    }
+
+    /* ===== Form ===== */
+    .contact-form-card {
+      background: var(--md-sys-color-surface-container);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: var(--md-sys-shape-corner-extra-large);
+      padding: 32px;
+    }
+
+    .contact-form-card h3 {
+      font-family: var(--md-sys-typescale-title-large-font);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: var(--md-sys-typescale-label-large-font);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--md-sys-color-on-surface-variant);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 16px;
+      background: var(--md-sys-color-surface-container-high);
+      border: 1px solid var(--md-sys-color-outline);
+      border-radius: var(--md-sys-shape-corner-extra-small);
+      color: var(--md-sys-color-on-surface);
+      font-family: var(--md-sys-typescale-body-large-font);
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--md-sys-color-primary);
+      border-width: 2px;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23CAC4D0' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .form-group select option {
+      background: var(--md-sys-color-surface-container-high);
+      color: var(--md-sys-color-on-surface);
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background: var(--md-sys-color-surface-dim);
+      border-top: 1px solid var(--md-sys-color-outline-variant);
+      padding: 40px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand img {
+      height: 28px;
+      width: auto;
+      opacity: 0.7;
+    }
+
+    .footer-brand span {
+      font-size: 14px;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--md-sys-color-on-surface-variant);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--md-sys-color-primary);
+    }
+
+    .footer-copy {
+      width: 100%;
+      text-align: center;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--md-sys-color-outline-variant);
+      font-size: 13px;
+      color: var(--md-sys-color-outline);
+    }
+
+    /* ===== FAB ===== */
+    .fab-contact {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 20px;
+      height: 56px;
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      border: none;
+      border-radius: var(--md-sys-shape-corner-large);
+      font-family: var(--md-sys-typescale-label-large-font);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.15);
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    .fab-contact:hover {
+      box-shadow: 0 3px 5px rgba(0,0,0,0.3), 0 6px 10px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+
+    .fab-contact .material-symbols-rounded {
+      font-size: 24px;
+    }
+
+    /* ===== Divider ===== */
+    .divider {
+      height: 1px;
+      background: var(--md-sys-color-outline-variant);
+      margin: 0;
+      border: none;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      section { padding: 48px 0; }
+      .hero { padding: 60px 0 48px; }
+      .hero-logo { width: 240px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; text-align: center; }
+      .about-image { order: -1; }
+      .about-stats { grid-template-columns: repeat(3, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .top-bar-nav { display: none; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .about-stats { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: center; }
+    }
+
+    /* ===== Animations (M3 Expressive motion) ===== */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.6s cubic-bezier(0.2, 0, 0, 1) forwards;
+      opacity: 0;
+    }
+
+    .animate-in:nth-child(1) { animation-delay: 0.05s; }
+    .animate-in:nth-child(2) { animation-delay: 0.1s; }
+    .animate-in:nth-child(3) { animation-delay: 0.15s; }
+    .animate-in:nth-child(4) { animation-delay: 0.2s; }
+    .animate-in:nth-child(5) { animation-delay: 0.25s; }
+    .animate-in:nth-child(6) { animation-delay: 0.3s; }
+
+    /* ===== Snackbar (form success) ===== */
+    .snackbar {
+      position: fixed;
+      bottom: 96px;
+      right: 24px;
+      background: var(--md-sys-color-inverse-surface);
+      color: var(--md-sys-color-inverse-on-surface);
+      padding: 14px 24px;
+      border-radius: var(--md-sys-shape-corner-extra-small);
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 3px 5px rgba(0,0,0,0.3), 0 6px 10px rgba(0,0,0,0.15);
+      z-index: 200;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    .snackbar.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top App Bar -->
+  <nav class="top-bar">
+    <div class="top-bar-inner">
+      <a href="#" class="top-bar-brand">
+        <img src="assets/endpcicon.jpg" alt="EndPC">
+        <span>EndPC</span>
+      </a>
+      <div class="top-bar-nav">
+        <a href="#services">Services</a>
+        <a href="#about">À propos</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span class="material-symbols-rounded">bolt</span>
+        Service PC rapide et fiable
+      </div>
+      <img src="assets/endpclogo.png" alt="EndPC" class="hero-logo">
+      <h1>Ton PC, <span>réparé</span> comme il faut.</h1>
+      <p class="hero-sub">Formattage, installation Linux, assemblage PC et plus encore. Je me déplace ou tu envoies — comme tu veux.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="md-btn md-btn-filled">
+          <span class="material-symbols-rounded">chat</span>
+          Réserver maintenant
+        </a>
+        <a href="#services" class="md-btn md-btn-outlined">
+          Voir les services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <p class="overline">Ce que je fais</p>
+        <h2>Services & Prix</h2>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-card animate-in">
+          <div class="service-card-icon">
+            <span class="material-symbols-rounded">computer</span>
+          </div>
+          <h3>Formattage Windows</h3>
+          <p>Windows frais, tous les drivers installés, prêt à l'emploi. Tu rends ton PC comme neuf.</p>
+          <div class="service-price">
+            <span class="amount">120</span>
+            <span class="currency">MAD</span>
+          </div>
+        </div>
+
+        <div class="service-card animate-in">
+          <div class="service-card-icon">
+            <span class="material-symbols-rounded">terminal</span>
+          </div>
+          <h3>Installation Linux</h3>
+          <p>Ubuntu, Kali, Parrot, Arch — je configure le distro que tu veux, avec ton bureau et tes outils.</p>
+          <div class="service-price">
+            <span class="amount">150</span>
+            <span class="currency">MAD</span>
+          </div>
+        </div>
+
+        <div class="service-card animate-in">
+          <div class="service-card-icon">
+            <span class="material-symbols-rounded">memory</span>
+          </div>
+          <h3>Assemblage PC</h3>
+          <p>Pièces neuves ou occasion, je monte ton setup de A à Z. Compatible, testé, garanti.</p>
+          <div class="service-price">
+            <span class="amount">200</span>
+            <span class="currency">MAD</span>
+          </div>
+        </div>
+
+        <div class="service-card animate-in">
+          <div class="service-card-icon">
+            <span class="material-symbols-rounded">sports_esports</span>
+          </div>
+          <h3>Installation Jeux</h3>
+          <p>Steam, Epic, cracked, émulateurs — je configure tout. Jeux prêts à lancer.</p>
+          <div class="service-price">
+            <span class="amount">100</span>
+            <span class="currency">MAD</span>
+          </div>
+        </div>
+
+        <div class="service-card animate-in">
+          <div class="service-card-icon">
+            <span class="material-symbols-rounded">add_circle</span>
+          </div>
+          <h3>Installation SSD / RAM</h3>
+          <p>Tu as une pièce neuve ? Je l'installe, je migre tes données, et je vérifie que tout roule.</p>
+          <div class="service-price">
+            <span class="amount">100</span>
+            <span class="currency">MAD</span>
+          </div>
+        </div>
+
+        <div class="service-card animate-in">
+          <div class="service-card-icon">
+            <span class="material-symbols-rounded">help</span>
+          </div>
+          <h3>Diagnostic & Conseils</h3>
+          <p>Ton PC est lent ou bizarre ? Je diagnostique le problème et je te dis quoi faire. Gratuit si tu passes commande.</p>
+          <div class="service-price">
+            <span class="amount">50</span>
+            <span class="currency">MAD</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <p class="overline" style="font-size:12px;font-weight:500;color:var(--md-sys-color-primary);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;">Pourquoi EndPC ?</p>
+          <h2>Un gars qui connait ses affaires.</h2>
+          <p>J'installe des distros Linux depuis que je suis gamin — Kali, Parrot, BlackArch, Ubuntu, tu nommes. Je formate, je monte des PC, je configure des setups gaming. Pas une boîte, pas un call center — juste moi, ton PC, et le résultat.</p>
+          <p>Je me déplace chez toi ou tu m'envoies ton PC. Comme tu veux.</p>
+          <div class="about-stats">
+            <div class="stat-card">
+              <div class="stat-number">5+</div>
+              <div class="stat-label">Services</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">24h</div>
+              <div class="stat-label">Délai moyen</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Résultat</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="assets/endpcicon.jpg" alt="EndPC">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="overline" style="font-size:12px;font-weight:500;color:var(--md-sys-color-primary);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;">Me contacter</p>
+          <h2>On commence quand ?</h2>
+          <p>Envoie-moi un message avec ce que tu veux et je te réponds vite. Dis-moi le service, ton PC, et on fixe un RDV.</p>
+          <div class="contact-methods">
+            <a href="mailto:kinanbourguiba7@gmail.com" class="contact-method">
+              <div class="contact-method-icon">
+                <span class="material-symbols-rounded">mail</span>
+              </div>
+              <div class="contact-method-text">
+                <div class="label">Email</div>
+                <div class="value">kinanbourguiba7@gmail.com</div>
+              </div>
+            </a>
+            <a href="https://www.instagram.com/endpc.ma" target="_blank" class="contact-method">
+              <div class="contact-method-icon">
+                <span class="material-symbols-rounded">photo_camera</span>
+              </div>
+              <div class="contact-method-text">
+                <div class="label">Instagram</div>
+                <div class="value">@endpc.ma</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="contact-form-card">
+          <h3>Envoyer un message</h3>
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input type="text" id="name" name="name" placeholder="Ton nom" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="ton@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="service">Service</label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Choisir un service</option>
+                <option value="Formattage Windows — 120 MAD">Formattage Windows — 120 MAD</option>
+                <option value="Installation Linux — 150 MAD">Installation Linux — 150 MAD</option>
+                <option value="Assemblage PC — 200 MAD">Assemblage PC — 200 MAD</option>
+                <option value="Installation Jeux — 100 MAD">Installation Jeux — 100 MAD</option>
+                <option value="Installation SSD/RAM — 100 MAD">Installation SSD/RAM — 100 MAD</option>
+                <option value="Diagnostic + Conseils — 50 MAD">Diagnostic + Conseils — 50 MAD</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Décris ton problème ou ce que tu veux..." required></textarea>
+            </div>
+            <button type="submit" class="md-btn md-btn-filled form-submit" id="submit-btn">
+              <span class="material-symbols-rounded">send</span>
+              <span id="submit-text">Envoyer</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="assets/endpcicon.jpg" alt="EndPC">
+          <span>EndPC — Maroc 🇲🇦</span>
+        </div>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#about">À propos</a>
+          <a href="#contact">Contact</a>
+          <a href="https://www.instagram.com/endpc.ma" target="_blank">Instagram</a>
+        </div>
+        <p class="footer-copy">© 2026 EndPC. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FAB Contact -->
+  <a href="#contact" class="fab-contact" aria-label="Me contacter">
+    <span class="material-symbols-rounded">chat</span>
+    <span>Contact</span>
+  </a>
+
+  <!-- Snackbar -->
+  <div class="snackbar" id="snackbar">Message envoyé ! Je te réponds vite. ✅</div>
+
+  <!-- Scroll animation observer + Form handler -->
+  <script>
+    const WORKER_URL = 'https://endpc-email.chivalrous-salt.workers.dev';
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-in').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+
+    function showSnackbar(msg) {
+      const snackbar = document.getElementById('snackbar');
+      snackbar.textContent = msg;
+      snackbar.classList.add('show');
+      setTimeout(() => snackbar.classList.remove('show'), 4000);
+    }
+
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('submit-btn');
+      const btnText = document.getElementById('submit-text');
+      btn.disabled = true;
+      btnText.textContent = 'Envoi...';
+
+      const data = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        service: document.getElementById('service').value,
+        message: document.getElementById('message').value,
+      };
+
+      try {
+        const res = await fetch(WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        const json = await res.json();
+
+        if (res.ok && json.success) {
+          showSnackbar('Message envoyé ! Je te réponds vite. ✅');
+          this.reset();
+        } else {
+          showSnackbar('Erreur — réessaie ou envoie un email direct. ❌');
+          console.error(json);
+        }
+      } catch (err) {
+        showSnackbar('Erreur réseau — vérifie ta connexion. ❌');
+        console.error(err);
+      }
+
+      btn.disabled = false;
+      btnText.textContent = 'Envoyer';
+    });
+  </script>
+
+</body>
+</html>

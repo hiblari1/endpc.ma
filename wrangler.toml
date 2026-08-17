@@ -1,0 +1,6 @@
+name = "endpc-email"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+RESEND_API_KEY = "re_JuxFRxnZ_6qsmSLNNUh9RUX87k32f2BvD"
